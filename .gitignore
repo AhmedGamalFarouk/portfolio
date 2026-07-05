@@ -1,0 +1,19 @@
+# Agent / AI tool directories
+.agents/
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env files
+.env
+.env.local
