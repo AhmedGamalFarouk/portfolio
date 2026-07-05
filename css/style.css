@@ -33,8 +33,9 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  cursor: none;
 }
-[dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+[dir="rtl"] body { font-family: 'Cairo', sans-serif; cursor: none; }
 [dir="rtl"] .sidebar { left: unset; right: 0; border-left: none; border-right: 1px solid var(--border); }
 [dir="rtl"] .content { margin-left: 0; margin-right: var(--sidebar-w); }
 [dir="rtl"] .work-btn { left: 24px; right: unset; }
@@ -42,8 +43,46 @@ body {
 [dir="rtl"] .contact-panel.open { right: 0; left: unset; }
 
 a { text-decoration: none; color: inherit; }
-button { background: none; border: none; cursor: pointer; color: inherit; font: inherit; }
+button { background: none; border: none; cursor: none; color: inherit; font: inherit; }
 img { display: block; max-width: 100%; }
+
+/* ── Custom Cursor ── */
+.cursor-dot {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: background 0.2s, transform 0.15s;
+  will-change: transform;
+}
+.cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  will-change: transform;
+  transition: opacity 0.3s, border-color 0.3s, width 0.4s, height 0.4s;
+}
+.cursor-ring.hovering {
+  width: 56px; height: 56px;
+  opacity: 0.25;
+  border-color: var(--accent-blue);
+}
+.cursor-dot.hovering {
+  background: var(--accent-blue);
+  transform: translate(-50%, -50%) scale(1.5);
+}
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none; }
+  body, button { cursor: auto; }
+}
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
@@ -436,7 +475,7 @@ img { display: block; max-width: 100%; }
 .projects-sec { padding-bottom: 100px; }
 .cards-wrapper {
   position: relative;
-  overflow: hidden;
+  padding: 0 48px;
 }
 .cards-track {
   display: flex;
@@ -534,15 +573,16 @@ img { display: block; max-width: 100%; }
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--text);
-  cursor: pointer;
+  cursor: none;
   transition: all var(--transition);
   z-index: 10;
+  flex-shrink: 0;
 }
 .cards-nav:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-.cards-nav.prev { left: -22px; }
-.cards-nav.next { right: -22px; }
-[dir="rtl"] .cards-nav.prev { left: unset; right: -22px; }
-[dir="rtl"] .cards-nav.next { right: unset; left: -22px; }
+.cards-nav.prev { left: 0; }
+.cards-nav.next { right: 0; }
+[dir="rtl"] .cards-nav.prev { left: unset; right: 0; }
+[dir="rtl"] .cards-nav.next { right: unset; left: 0; }
 
 /* ═══════════════ SKILLS ═══════════════ */
 .skills-sec { background: var(--bg-elevated); }

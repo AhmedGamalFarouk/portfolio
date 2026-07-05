@@ -164,26 +164,26 @@ function initHeroAnimations() {
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   // Profile appear
-  tl.to('.hero-profile-wrap', { opacity: 1, duration: 0.6 }, 0)
+  tl.to('.hero-profile-wrap', { opacity: 1, duration: 1.0 }, 0)
 
-  // Text lines unmask
-  .to('.hero-text', { opacity: 1, duration: 0 }, 0.1)
+  // Text lines unmask — slower, more cinematic
+  .to('.hero-text', { opacity: 1, duration: 0 }, 0.2)
   .to('.line-mask', {
-    scaleX: 0, duration: 0.7,
-    stagger: 0.18,
+    scaleX: 0, duration: 1.1,
+    stagger: 0.26,
     ease: 'power4.inOut',
     transformOrigin: 'right'
-  }, 0.2)
+  }, 0.3)
 
   // Subtitle + CTAs
-  .from('.hero-sub', { y: 20, opacity: 0, duration: 0.5 }, 0.9)
-  .from('.hero-ctas', { y: 20, opacity: 0, duration: 0.5 }, 1.0)
+  .from('.hero-sub', { y: 24, opacity: 0, duration: 0.8, ease: 'power2.out' }, 1.3)
+  .from('.hero-ctas', { y: 24, opacity: 0, duration: 0.8, ease: 'power2.out' }, 1.45)
 
   // Scroll hint
-  .to('.scroll-hint', { opacity: 1, y: 0, duration: 0.5 }, 1.2);
+  .to('.scroll-hint', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 1.6);
 
   // Work button
-  gsap.from('.work-btn', { opacity: 0, x: 30, duration: 0.8, delay: 1.5, ease: 'power3.out' });
+  gsap.from('.work-btn', { opacity: 0, x: 30, duration: 1.0, delay: 1.8, ease: 'power3.out' });
 }
 
 // ═══════════════ SCROLL ANIMATIONS ═══════════════
@@ -197,50 +197,50 @@ function initScrollAnimations() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: line,
-        start: 'top 80%',
+        start: 'top 82%',
         toggleActions: 'play none none reverse'
       }
     });
-    tl.to(line, { opacity: 1, y: 0, duration: 0.4 })
-      .to(mask, { scaleX: 0, duration: 0.6, ease: 'power4.inOut', transformOrigin: 'right' }, 0.1);
+    tl.to(line, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+      .to(mask, { scaleX: 0, duration: 0.9, ease: 'power4.inOut', transformOrigin: 'right' }, 0.15);
   });
 
   // Project cards
   gsap.to('.project-card', {
-    opacity: 1, y: 0, duration: 0.5,
-    stagger: 0.1, ease: 'power3.out',
+    opacity: 1, y: 0, duration: 0.7,
+    stagger: 0.13, ease: 'power3.out',
     scrollTrigger: {
       trigger: '.cards-wrapper',
-      start: 'top 75%',
+      start: 'top 78%',
     }
   });
 
   // Skills groups
   gsap.to('.skill-group', {
-    opacity: 1, y: 0, duration: 0.5,
-    stagger: 0.1, ease: 'power3.out',
-    scrollTrigger: { trigger: '.skills-grid', start: 'top 80%' }
+    opacity: 1, y: 0, duration: 0.65,
+    stagger: 0.13, ease: 'power3.out',
+    scrollTrigger: { trigger: '.skills-grid', start: 'top 82%' }
   });
 
   // Publication card
   gsap.to('.publication-card', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
-    scrollTrigger: { trigger: '.publication-card', start: 'top 85%' }
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.publication-card', start: 'top 87%' }
   });
 
   // About elements
   gsap.to('.about-text', {
-    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
-    scrollTrigger: { trigger: '.about-inner', start: 'top 75%' }
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: '.about-inner', start: 'top 78%' }
   });
   gsap.to('.certs-grid', {
-    opacity: 1, y: 0, duration: 0.6, delay: 0.15, ease: 'power3.out',
-    scrollTrigger: { trigger: '.about-inner', start: 'top 75%' }
+    opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out',
+    scrollTrigger: { trigger: '.about-inner', start: 'top 78%' }
   });
   gsap.to('.cert-item', {
-    opacity: 1, y: 0, duration: 0.4,
-    stagger: 0.07, ease: 'power3.out',
-    scrollTrigger: { trigger: '.cert-list', start: 'top 80%' }
+    opacity: 1, y: 0, duration: 0.5,
+    stagger: 0.09, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cert-list', start: 'top 83%' }
   });
 
   // Scroll progress bar
@@ -393,18 +393,70 @@ function initCardsNav() {
   updateNavBtns();
 }
 
-// ═══════════════ CURSOR EFFECTS ═══════════════
-function initMagneticButtons() {
-  document.querySelectorAll('.btn-primary, .btn-submit, .work-btn').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.3, ease: 'power2.out' });
+// ═══════════════ CUSTOM CURSOR ═══════════════
+function initCursor() {
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+
+  // Hide cursors until mouse enters window
+  dot.style.opacity = '0';
+  ring.style.opacity = '0';
+
+  let mouseX = 0, mouseY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    // Dot follows instantly
+    gsap.to(dot, {
+      x: mouseX, y: mouseY,
+      duration: 0.08,
+      ease: 'none'
     });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'elastic.out(1,0.5)' });
+
+    // Ring lags smoothly behind
+    gsap.to(ring, {
+      x: mouseX, y: mouseY,
+      duration: 0.55,
+      ease: 'power2.out'
     });
+
+    dot.style.opacity = '1';
+    ring.style.opacity = '0.5';
+  });
+
+  // Hide when leaving window
+  document.addEventListener('mouseleave', () => {
+    gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
+  });
+  document.addEventListener('mouseenter', () => {
+    gsap.to(dot, { opacity: 1, duration: 0.3 });
+    gsap.to(ring, { opacity: 0.5, duration: 0.3 });
+  });
+
+  // Expand ring on interactive elements
+  const interactives = document.querySelectorAll('a, button, .pill, .project-card, .nav-item, .sidebar-avatar, .work-btn');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      dot.classList.add('hovering');
+      ring.classList.add('hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+      dot.classList.remove('hovering');
+      ring.classList.remove('hovering');
+    });
+  });
+
+  // Shrink on click
+  document.addEventListener('mousedown', () => {
+    gsap.to(dot, { scale: 0.6, duration: 0.1 });
+    gsap.to(ring, { scale: 0.85, duration: 0.15 });
+  });
+  document.addEventListener('mouseup', () => {
+    gsap.to(dot, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.5)' });
+    gsap.to(ring, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
   });
 }
 
@@ -435,6 +487,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Apply saved language
   setLang(currentLang);
 
+  // Cursor runs immediately (before load)
+  initCursor();
+
   // Init all modules
   initLoader();
   initNav();
@@ -445,7 +500,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Delay scroll animations until after load
   window.addEventListener('load', () => {
     initScrollAnimations();
-    initMagneticButtons();
     initPillsAnimation();
   });
 });
