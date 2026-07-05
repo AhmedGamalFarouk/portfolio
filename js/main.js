@@ -303,71 +303,6 @@ function initNav() {
   updateActive();
 }
 
-// ═══════════════ CONTACT PANEL ═══════════════
-function initContact() {
-  const panel = document.getElementById('contact-panel');
-  const overlay = document.getElementById('contact-overlay');
-  const closeBtn = document.getElementById('contact-close');
-  const workBtn = document.getElementById('work-btn');
-  const mobileContactBtn = document.getElementById('mobile-contact-btn');
-
-  const openPanel = () => {
-    panel.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    gsap.from(panel, { opacity: 0.5, duration: 0.3 });
-  };
-  const closePanel = () => {
-    panel.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  if (workBtn) workBtn.addEventListener('click', openPanel);
-  if (mobileContactBtn) mobileContactBtn.addEventListener('click', openPanel);
-  if (closeBtn) closeBtn.addEventListener('click', closePanel);
-  if (overlay) overlay.addEventListener('click', closePanel);
-
-  // Escape key
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
-
-  // Form submit
-  const form = document.getElementById('contact-form');
-  const errEl = document.getElementById('form-error');
-  const succEl = document.getElementById('form-success');
-  const submitBtn = document.getElementById('submit-btn');
-
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      errEl.textContent = '';
-      succEl.textContent = '';
-      submitBtn.disabled = true;
-      submitBtn.querySelector('span').textContent = '…';
-
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          succEl.textContent = currentLang === 'ar' ? '✓ تم الإرسال بنجاح!' : '✓ Message sent!';
-          form.reset();
-          setTimeout(closePanel, 2500);
-        } else {
-          throw new Error();
-        }
-      } catch {
-        errEl.textContent = currentLang === 'ar' ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'Something went wrong. Please try again.';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.querySelector('span').textContent = translations[currentLang].formSend;
-      }
-    });
-  }
-}
-
 // ═══════════════ PROJECT CARDS NAV ═══════════════
 function initCardsNav() {
   const track = document.getElementById('cards-track');
@@ -493,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init all modules
   initLoader();
   initNav();
-  initContact();
   initCardsNav();
   initAvatarScroll();
 
