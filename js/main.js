@@ -27,6 +27,17 @@ const translations = {
     proc3: 'Design & <span class="accent">architecture</span> take shape…',
     proc4: 'I <span class="accent-blue">code</span> it with precision…',
     proc5: 'And <span class="accent">ship</span> something remarkable.',
+    // Case Study
+    caseStudyBadge: 'Featured Case Study',
+    caseStudySub: 'Combating social drift by reducing planning friction.',
+    csAnalysisTitle: 'Market Analysis',
+    csAnalysisText: 'Most social platforms isolate users behind feeds. Very few platforms coordinate offline gatherings effectively, leaving people with planning fatigue and canceled plans.',
+    csProblemTitle: 'The Coordination Problem',
+    csProblemText: 'Group chats are chaotic. Decisions on dates, venues, and budgets are quickly lost. Coordination friction causes 60% of informal plans to fail during setup.',
+    csSolutionTitle: 'The Solution',
+    csSolutionText: 'Circle streamlines planning into three simple steps: propose a plan, vote on options, and lock in the date. Real-time Firebase database synchronization ensures everyone is aligned instantly.',
+    csFeat1: 'Focus on Utility: Address coordination friction directly.',
+    csFeat2: 'Warm, Inviting Design: Dark UI balanced with vibrant typography.',
     // Projects
     projectsTitle: 'My best projects <span class="accent">★</span>',
     proj1Desc: 'A full e-commerce app with authentication, cart, product management, SQLite persistence, and Bloc state management.',
@@ -41,6 +52,21 @@ const translations = {
     skillMobile: 'Mobile', skillWeb: 'Web', skillBackend: 'Backend & DB', skillTools: 'Tools',
     pubLabel: 'Publication — Springer',
     pubTitle: 'A Systematic Literature Review of Optimization Algorithms for the University Course Timetabling Problem',
+    // Reviews
+    reviewsTitle: 'They trusted me ★',
+    review1Text: '"Ahmed is an exceptional developer who combines clean architecture with sharp UI skills. He delivered our Flutter application on schedule and with flawless performance."',
+    review2Text: '"Working with Ahmed to build our event platform was a game-changer. His attention to detail, responsiveness, and mastery of cross-platform development were top-tier."',
+    review3Text: '"Ahmed transformed our complex dashboard requirements into a fast, intuitive web application. Highly recommended for web and mobile development."',
+    // FAQ
+    faqTitle: 'Frequently Asked Questions',
+    faqQ1: 'How do we start a project?',
+    faqA1: 'We start with a discovery call to align on your goals, target audience, and timeline. Then, I design a interactive prototype in Figma before writing any code.',
+    faqQ2: 'What technologies do you use?',
+    faqA2: 'For mobile applications, I specialize in Flutter (for cross-platform iOS & Android) and React Native. For web applications, I build with React, Angular, and robust modern CSS.',
+    faqQ3: 'Do you provide post-launch support?',
+    faqA3: 'Yes! I offer flexible monthly maintenance plans to handle updates, security patches, backups, and feature enhancements so you can focus on your business.',
+    faqQ4: 'How do you handle project delivery?',
+    faqA4: 'I deliver full, clean source code via Git, along with complete documentation and assistance in deploying the applications to the App Store, Google Play, or hosting servers.',
     // About
     aboutRole: 'Front-End & Cross-Platform Mobile Developer',
     aboutDesc1: 'Results-driven developer with proven expertise in Flutter, React, and Angular. I specialize in building responsive, cross-platform applications with a strong foundation in UI/UX principles, clean architecture, and performance optimization.',
@@ -51,7 +77,8 @@ const translations = {
     certsTitle: 'Certifications',
     footerLangAr: 'Arabic', footerLangEn: 'English',
     // Contact
-    contactTitle: 'Contact', workBtn: 'Work\nwith me',
+    contactBack: 'Return',
+    contactTitle: 'Contact', workBtn: 'Work with me',
     formEmail: 'Your email', formName: 'Your name',
     formMessage: 'Your message', formSend: 'Send',
   },
@@ -73,6 +100,17 @@ const translations = {
     proc3: 'يتشكّل التصميم و<span class="accent">المعمارية</span>…',
     proc4: 'أكتب <span class="accent-blue">الكود</span> بدقة…',
     proc5: 'وأُطلق شيئاً <span class="accent">رائعاً</span>.',
+    // Case Study
+    caseStudyBadge: 'دراسة حالة مميزة',
+    caseStudySub: 'مكافحة الانجراف الاجتماعي من خلال تقليل احتكاك التخطيط.',
+    csAnalysisTitle: 'تحليل السوق',
+    csAnalysisText: 'تُعزل معظم منصات التواصل الاجتماعي المستخدمين خلف خلاصة الأخبار. عدد قليل جداً من المنصات ينسق التجمعات الواقعية بشكل فعال، مما يترك الناس مع إجهاد التخطيط وإلغاء الخطط.',
+    csProblemTitle: 'مشكلة التنسيق',
+    csProblemText: 'المحادثات الجماعية فوضوية. تضيع القرارات المتعلقة بالتواريخ والأماكن والميزانيات بسرعة. يتسبب احتكاك التنسيق في فشل 60٪ من الخطط الاجتماعية غير الرسمية أثناء الإعداد.',
+    csSolutionTitle: 'الحل',
+    csSolutionText: 'يبسط Circle تخطيط الأحداث في ثلاث خطوات بسيطة: اقتراح خطة، التصويت على الخيارات، وتثبيت التاريخ. تضمن مزامنة قاعدة بيانات Firebase الفورية محاذاة الجميع على الفور.',
+    csFeat1: 'التركيز على الفائدة: معالجة مشكلة التنسيق مباشرة.',
+    csFeat2: 'تصميم دافئ وجذاب: واجهة مستخدم مظلمة متوازنة مع طباعة حيوية.',
     // Projects
     projectsTitle: 'أبرز مشاريعي <span class="accent">★</span>',
     proj1Desc: 'تطبيق تسوق متكامل مع المصادقة، عربة الشراء، إدارة المنتجات، وتخزين SQLite.',
@@ -87,6 +125,21 @@ const translations = {
     skillMobile: 'الجوال', skillWeb: 'الويب', skillBackend: 'الخلفية وقواعد البيانات', skillTools: 'الأدوات',
     pubLabel: 'منشور علمي — Springer',
     pubTitle: 'مراجعة منهجية لخوارزميات التحسين لمشكلة جدولة المقررات الجامعية',
+    // Reviews
+    reviewsTitle: 'قالوا عني ★',
+    review1Text: '"أحمد مطور استثنائي يجمع بين المعمارية النظيفة ومهارات واجهة المستخدم الحادة. لقد قدم تطبيق Flutter الخاص بنا في الموعد المحدد وبأداء لا تشوبه شائبة."',
+    review2Text: '"كان العمل مع أحمد لبناء منصة الأحداث الخاصة بنا نقطة تحول. كان اهتمامه بالتفاصيل والاستجابة وإتقان تطوير التطبيقات متعددة المنصات من الدرجة الأولى."',
+    review3Text: '"قام أحمد بتحويل متطلبات لوحة التحكم المعقدة لدينا إلى تطبيق ويب سريع وسهل الاستخدام. نوصي بشدة بالتعامل معه لتطوير الويب والجوال."',
+    // FAQ
+    faqTitle: 'الأسئلة الشائعة',
+    faqQ1: 'كيف نبدأ مشروعاً؟',
+    faqA1: 'نبدأ بجلسة استكشافية للتوافق مع أهدافك وجمهورك المستهدف والجدول الزمني. ثم أقوم بتصميم نموذج تفاعلي في Figma قبل كتابة أي كود.',
+    faqQ2: 'ما هي التقنيات التي تستخدمها؟',
+    faqA2: 'لتطبيقات الجوال، أتخصص في Flutter (تطبيقات iOS و Android) و React Native. لتطبيقات الويب، أبني باستخدام React و Angular و CSS حديث وقوي.',
+    faqQ3: 'هل تقدم دعماً بعد إطلاق المشروع؟',
+    faqA3: 'نعم! أقدم خطط صيانة شهرية مرنة للتعامل مع التحديثات، والتصحيحات الأمنية، والنسخ الاحتياطي، وتحسينات الميزات حتى تتمكن من التركيز على عملك.',
+    faqQ4: 'كيف يتم تسليم المشروع؟',
+    faqA4: 'أقوم بتسليم كود المصدر الكامل والنظيف عبر Git، مع توثيق كامل ومساعدة في نشر التطبيقات على App Store أو Google Play أو خوادم الاستضافة.',
     // About
     aboutRole: 'مطوّر واجهات أمامية وتطبيقات متعددة المنصات',
     aboutDesc1: 'مطوّر محترف متخصص في Flutter وReact وAngular. أبني تطبيقات تفاعلية وسريعة ومتعددة المنصات بأسس قوية في تصميم UI/UX والمعمارية النظيفة.',
@@ -97,9 +150,10 @@ const translations = {
     certsTitle: 'الشهادات والدورات',
     footerLangAr: 'العربية', footerLangEn: 'الإنجليزية',
     // Contact
-    contactTitle: 'تواصل معي', workBtn: 'اعمل\nمعي',
-    formEmail: 'بريدك الإلكتروني', formName: 'اسمك',
-    formMessage: 'رسالتك', formSend: 'إرسال',
+    contactBack: 'رجوع',
+    contactTitle: 'تواصل معي', workBtn: 'اعمل معي',
+    formEmail: 'البريد الإلكتروني', formName: 'الاسم',
+    formMessage: 'الرسالة', formSend: 'إرسال',
   }
 };
 
@@ -447,6 +501,134 @@ function initAvatarScroll() {
   }
 }
 
+// ═══════════════ NEW BRICE-INSPIRED MODULES ═══════════════
+
+// Initialize GSAP Draggable Menu on Desktop
+function initDraggableMenu() {
+  if (window.innerWidth > 768 && typeof Draggable !== 'undefined') {
+    Draggable.create("#sidebar", {
+      type: "x,y",
+      bounds: "body",
+      edgeResistance: 0.65,
+      trigger: "#sidebar-drag",
+      inertia: false
+    });
+  }
+}
+
+// Auto-rotating Mockup Slider in Hero
+function initHeroShowcase() {
+  const slides = document.querySelectorAll('.showcase-slide');
+  if (slides.length === 0) return;
+  let activeIndex = 0;
+  
+  setInterval(() => {
+    slides[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + 1) % slides.length;
+    slides[activeIndex].classList.add('active');
+  }, 4000);
+}
+
+// Mouse-follow Prev/Next helper cursors
+function initCustomPrevNextCursors() {
+  const prevBtn = document.getElementById('cards-prev');
+  const nextBtn = document.getElementById('cards-next');
+  const prevArrow = document.getElementById('cursor-arrow-prev');
+  const nextArrow = document.getElementById('cursor-arrow-next');
+  
+  if (!prevBtn || !nextBtn || !prevArrow || !nextArrow) return;
+  
+  const moveHandler = (e, arrow) => {
+    gsap.to(arrow, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.1,
+      ease: 'none'
+    });
+  };
+  
+  prevBtn.addEventListener('mousemove', (e) => {
+    moveHandler(e, prevArrow);
+  });
+  prevBtn.addEventListener('mouseenter', () => {
+    prevArrow.classList.add('visible');
+    document.body.classList.add('hide-cursor');
+  });
+  prevBtn.addEventListener('mouseleave', () => {
+    prevArrow.classList.remove('visible');
+    document.body.classList.remove('hide-cursor');
+  });
+  
+  nextBtn.addEventListener('mousemove', (e) => {
+    moveHandler(e, nextArrow);
+  });
+  nextBtn.addEventListener('mouseenter', () => {
+    nextArrow.classList.add('visible');
+    document.body.classList.add('hide-cursor');
+  });
+  nextBtn.addEventListener('mouseleave', () => {
+    nextArrow.classList.remove('visible');
+    document.body.classList.remove('hide-cursor');
+  });
+}
+
+// Slide-out Contact Panel Form Toggles & Actions
+function initContactPanel() {
+  const workBtn = document.getElementById('work-btn');
+  const overlay = document.getElementById('contact-overlay');
+  const panel = document.getElementById('contact-panel');
+  const closeBtn = document.getElementById('contact-close-btn');
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  
+  if (!workBtn || !overlay || !panel || !closeBtn || !form) return;
+  
+  const openPanel = () => {
+    panel.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  
+  const closePanel = () => {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    status.className = 'form-status';
+    status.innerHTML = '';
+  };
+  
+  workBtn.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+  overlay.addEventListener('click', closePanel);
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('form-email').value;
+    const name = document.getElementById('form-name').value;
+    const message = document.getElementById('form-message').value;
+    
+    if (!name || !email || !message) {
+      status.className = 'form-status error';
+      status.innerHTML = currentLang === 'ar' ? 'يرجى ملء جميع الحقول!' : 'Please fill in all fields!';
+      return;
+    }
+    
+    const submitBtn = form.querySelector('.form-submit-btn');
+    submitBtn.style.opacity = '0.7';
+    submitBtn.innerHTML = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
+    
+    setTimeout(() => {
+      submitBtn.style.opacity = '1';
+      submitBtn.innerHTML = currentLang === 'ar' ? 'إرسال' : 'Send';
+      status.className = 'form-status success';
+      status.innerHTML = currentLang === 'ar' ? 'تم إرسال الرسالة بنجاح!' : 'Message sent successfully!';
+      form.reset();
+      
+      setTimeout(closePanel, 2000);
+    }, 1500);
+  });
+}
+
 // ═══════════════ INIT ═══════════════
 document.addEventListener('DOMContentLoaded', () => {
   // Apply saved language
@@ -466,6 +648,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initCardsNav();
   initAvatarScroll();
+  initDraggableMenu();
+  initHeroShowcase();
+  initCustomPrevNextCursors();
+  initContactPanel();
 
   // Delay scroll animations until after load
   window.addEventListener('load', () => {

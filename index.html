@@ -19,6 +19,7 @@
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
@@ -32,6 +33,12 @@
   <!-- Custom Cursor -->
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="cursor-arrow-prev" id="cursor-arrow-prev">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </div>
+  <div class="cursor-arrow-next" id="cursor-arrow-next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+  </div>
 
   <!-- ═══════════════════════════ LOADING SCREEN ═══════════════════════════ -->
   <div class="loading" id="loading">
@@ -90,6 +97,14 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
       </div>
+
+      <!-- Drag handle -->
+      <div class="sidebar-drag" id="sidebar-drag" title="Drag menu" aria-label="Drag menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="9" cy="5" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="9" cy="19" r="1.5"/>
+          <circle cx="15" cy="5" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="15" cy="19" r="1.5"/>
+        </svg>
+      </div>
     </div>
   </nav>
 
@@ -109,8 +124,9 @@
 
       <div class="hero-profile-wrap">
         <div class="hero-profile-ring"></div>
-        <img src="img/profile.png" alt="Ahmed Gamal Farouk" class="hero-profile" width="240" height="240">
+        <img src="img/profile.png" alt="Ahmed Gamal Farouk" class="hero-profile" width="220" height="220">
       </div>
+
 
       <div class="hero-text">
         <div class="hero-lines" id="hero-lines">
@@ -122,7 +138,18 @@
           </div>
           <div class="hero-line">
             <div class="line-content">
-              <h2><span data-i18n="heroLine2a">I build</span> <span class="accent" data-i18n="heroLine2b">mobile</span> <span data-i18n="heroLine2c">and</span> <span class="accent-blue" data-i18n="heroLine2d">web</span></h2>
+              <h2>
+                <span data-i18n="heroLine2a">I build</span> 
+                <span class="accent">
+                  <span data-i18n="heroLine2b">mobile</span>
+                  <svg class="line-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                </span> 
+                <span data-i18n="heroLine2c">and</span> 
+                <span class="accent-blue">
+                  <span data-i18n="heroLine2d">web</span>
+                  <svg class="line-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </span>
+              </h2>
               <div class="line-mask"></div>
             </div>
           </div>
@@ -156,7 +183,144 @@
         <div class="proc-line"><span class="pnum">02</span><div class="ptextbox"><h3 data-i18n="proc2">Then I <span class="accent-blue">analyze</span> the problem…</h3><div class="line-mask"></div></div></div>
         <div class="proc-line"><span class="pnum">03</span><div class="ptextbox"><h3 data-i18n="proc3">Design & <span class="accent">architecture</span> take shape…</h3><div class="line-mask"></div></div></div>
         <div class="proc-line"><span class="pnum">04</span><div class="ptextbox"><h3 data-i18n="proc4">I <span class="accent-blue">code</span> it with precision…</h3><div class="line-mask"></div></div></div>
-        <div class="proc-line"><span class="pnum">05</span><div class="ptextbox"><h3 data-i18n="proc5">And <span class="accent">ship</span> something remarkab      <div class="cards-wrapper">
+        <div class="proc-line"><span class="pnum">05</span><div class="ptextbox"><h3 data-i18n="proc5">And <span class="accent">ship</span> something remarkable.</h3><div class="line-mask"></div></div></div>
+      </div>
+
+      <!-- Feature Case Study: Circle App -->
+      <div class="case-study" id="case-study">
+        <div class="case-study-header">
+          <span class="cs-badge" data-i18n="caseStudyBadge">Featured Case Study</span>
+          <h3 class="cs-title">Circle — Social Event Platform</h3>
+          <p class="cs-subtitle" data-i18n="caseStudySub">Combating social drift by reducing planning friction.</p>
+        </div>
+        
+        <div class="case-study-grid">
+          <div class="cs-column">
+            <div class="cs-card cs-analysis">
+              <div class="cs-card-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cs-icon" aria-hidden="true"><path d="M21.21 15.89A10 10 0 1 1 8 2.83M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                <h4 data-i18n="csAnalysisTitle">Market Analysis</h4>
+              </div>
+              <p data-i18n="csAnalysisText">Most social platforms isolate users behind feeds. Very few platforms coordinate offline gatherings effectively, leaving people with planning fatigue and canceled plans.</p>
+            </div>
+            
+            <div class="cs-card cs-problem">
+              <div class="cs-card-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cs-icon" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <h4 data-i18n="csProblemTitle">The Coordination Problem</h4>
+              </div>
+              <p data-i18n="csProblemText">Group chats are chaotic. Decisions on dates, venues, and budgets are quickly lost. Coordination friction causes 60% of informal plans to fail during setup.</p>
+            </div>
+          </div>
+
+          <div class="cs-column">
+            <div class="cs-card cs-solution">
+              <div class="cs-card-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cs-icon" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <h4 data-i18n="csSolutionTitle">The Solution</h4>
+              </div>
+              <p data-i18n="csSolutionText">Circle streamlines planning into three simple steps: propose a plan, vote on options, and lock in the date. Real-time Firebase database synchronization ensures everyone is aligned instantly.</p>
+              <ul class="cs-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-icon" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="csFeat1">Focus on Utility: Address coordination friction directly.</span>
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-icon" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-i18n="csFeat2">Warm, Inviting Design: Dark UI balanced with vibrant typography.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS Device Showcase -->
+        <div class="cs-devices">
+          <!-- MacBook -->
+          <div class="mockup-macbook">
+            <div class="mac-screen">
+              <div class="mac-browser-bar">
+                <div class="mac-dot red"></div>
+                <div class="mac-dot yellow"></div>
+                <div class="mac-dot green"></div>
+                <div class="mac-url">circle-events.web.app</div>
+              </div>
+              <div class="mac-content">
+                <div class="cs-preview-web">
+                  <div class="cs-prev-nav">
+                    <div class="cs-prev-logo">Circle</div>
+                    <div class="cs-prev-links"><span>Dashboard</span><span>Events</span><span>Settings</span></div>
+                  </div>
+                  <div class="cs-prev-grid">
+                    <div class="cs-prev-sidebar">
+                      <div class="prev-item active"></div>
+                      <div class="prev-item"></div>
+                      <div class="prev-item"></div>
+                    </div>
+                    <div class="cs-prev-main">
+                      <div class="cs-prev-hero-card">
+                        <h5>Weekend Camping Trip</h5>
+                        <span class="badge">July 18th · 8 Attendees</span>
+                      </div>
+                      <div class="cs-prev-subcards">
+                        <div class="subcard">
+                          <h6>RSVPs</h6>
+                          <div class="avatars"><span class="av">A</span><span class="av">B</span><span class="av">C</span><span class="av">+5</span></div>
+                        </div>
+                        <div class="subcard">
+                          <h6>Location</h6>
+                          <div class="map-stub">📍 Wadi El Rayan</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mac-body"></div>
+          </div>
+
+          <!-- iPhone -->
+          <div class="mockup-iphone">
+            <div class="iphone-speaker"></div>
+            <div class="iphone-screen">
+              <div class="cs-preview-mobile">
+                <div class="prev-mob-header">
+                  <span>9:41</span>
+                  <div class="prev-mob-icons">🔋 📶</div>
+                </div>
+                <div class="prev-mob-content">
+                  <h4>Circle App</h4>
+                  <p>Host event in 10 seconds.</p>
+                  <div class="mob-card">
+                    <div class="mob-title">Friday Dinner</div>
+                    <div class="mob-desc">Tap to RSVP</div>
+                    <div class="mob-btns">
+                      <span class="mob-btn yes">Yes</span>
+                      <span class="mob-btn no">No</span>
+                    </div>
+                  </div>
+                  <div class="mob-card">
+                    <div class="mob-title">Board Games Night</div>
+                    <div class="mob-progress">75% Voted</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="iphone-home"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECTS SECTION ── -->
+    <section class="sec projects-sec" id="projects">
+      <div class="section-header">
+        <div class="section-accent"></div>
+        <h2 data-i18n="projectsTitle">My best projects <span class="accent">★</span></h2>
+      </div>
+
+      <div class="cards-wrapper">
         <div class="cards-track" id="cards-track">
 
           <div class="project-card" style="--card-color: #0ea5e9;">
@@ -401,6 +565,56 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </button>
   </nav>
+
+  <!-- Floating Contact CTA Button -->
+  <button class="work-btn" id="work-btn" aria-label="Open contact panel">
+    <span class="work-btn-text" data-i18n="workBtn">Work with me</span>
+    <span class="work-btn-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </span>
+  </button>
+
+  <!-- Slide-out Contact Panel -->
+  <div class="contact-overlay" id="contact-overlay"></div>
+  <div class="contact-panel" id="contact-panel">
+    <div class="contact-panel-header">
+      <button class="contact-close-btn" id="contact-close-btn" aria-label="Close contact panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        <span data-i18n="contactBack">Return</span>
+      </button>
+      <h2 data-i18n="contactTitle">Contact</h2>
+    </div>
+    
+    <div class="contact-panel-content">
+      <div class="contact-info-list">
+        <a href="mailto:ahmedgamalfarouk0@gmail.com" class="contact-info-item">
+          <span class="info-icon">📧</span>
+          <h3>ahmedgamalfarouk0@gmail.com</h3>
+        </a>
+        <a href="https://linkedin.com/in/ahmed-gamal-farouk" target="_blank" rel="noopener" class="contact-info-item">
+          <span class="info-icon">🔗</span>
+          <h3>linkedin.com/in/ahmed-gamal-farouk</h3>
+        </a>
+      </div>
+
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <input type="email" id="form-email" name="email" required placeholder=" ">
+          <label for="form-email" data-i18n="formEmail">Your email</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="form-name" name="name" required placeholder=" ">
+          <label for="form-name" data-i18n="formName">Your name</label>
+        </div>
+        <div class="form-group">
+          <textarea id="form-message" name="message" required placeholder=" " rows="4"></textarea>
+          <label for="form-message" data-i18n="formMessage">Your message</label>
+        </div>
+        <div class="form-status" id="form-status"></div>
+        <button type="submit" class="form-submit-btn" data-i18n="formSend">Send</button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
