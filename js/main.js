@@ -5,10 +5,13 @@
 
 'use strict';
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ═══════════════ TRANSLATIONS ═══════════════
 const translations = {
   en: {
     // Nav
+    skipLink: 'Skip to main content',
     navHome: 'Home', navProjects: 'Projects', navSkills: 'Skills', navAbout: 'About',
     // Hero
     heroBadge: 'Available for hire',
@@ -54,6 +57,7 @@ const translations = {
   },
   ar: {
     // Nav
+    skipLink: 'تخطي إلى المحتوى الرئيسي',
     navHome: 'الرئيسية', navProjects: 'المشاريع', navSkills: 'المهارات', navAbout: 'عني',
     // Hero
     heroBadge: 'متاح للعمل',
@@ -129,6 +133,14 @@ function setLang(lang) {
 // ═══════════════ LOADING SCREEN ═══════════════
 function initLoader() {
   const loading = document.getElementById('loading');
+  if (prefersReducedMotion) {
+    if (loading) {
+      loading.style.display = 'none';
+      loading.classList.add('done');
+    }
+    initHeroAnimations();
+    return;
+  }
   const letters = loading.querySelectorAll('.loading-letters span');
   const bar = loading.querySelector('.loading-bar');
   const wipe = loading.querySelector('.loading-wipe');
@@ -161,6 +173,11 @@ function initLoader() {
 
 // ═══════════════ HERO ANIMATIONS ═══════════════
 function initHeroAnimations() {
+  if (prefersReducedMotion) {
+    gsap.set(['.hero-profile-wrap', '.hero-text', '.scroll-hint', '.work-btn'], { opacity: 1, y: 0 });
+    gsap.set('.line-mask', { scaleX: 0 });
+    return;
+  }
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   // Profile appear
@@ -188,6 +205,20 @@ function initHeroAnimations() {
 
 // ═══════════════ SCROLL ANIMATIONS ═══════════════
 function initScrollAnimations() {
+  if (prefersReducedMotion) {
+    gsap.set(['.proc-line', '.project-card', '.skill-group', '.publication-card', '.about-text', '.certs-grid', '.cert-item'], { opacity: 1, y: 0 });
+    gsap.set('.proc-line .line-mask', { scaleX: 0 });
+
+    // Scroll progress bar
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = progress + '%';
+    }, { passive: true });
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   // Process lines
@@ -245,7 +276,6 @@ function initScrollAnimations() {
 
   // Scroll progress bar
   const progressBar = document.getElementById('progress-bar');
-  const content = document.getElementById('content');
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -421,6 +451,12 @@ function initAvatarScroll() {
 document.addEventListener('DOMContentLoaded', () => {
   // Apply saved language
   setLang(currentLang);
+
+  // Set GSAP initial states dynamically if animations are enabled
+  if (!prefersReducedMotion) {
+    gsap.set(['.hero-text', '.hero-profile-wrap', '.scroll-hint'], { opacity: 0 });
+    gsap.set(['.proc-line', '.project-card', '.skill-group', '.publication-card', '.about-text', '.certs-grid', '.cert-item'], { opacity: 0, y: 20 });
+  }
 
   // Cursor runs immediately (before load)
   initCursor();
