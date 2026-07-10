@@ -542,7 +542,7 @@ h1, h2, h3 {
 .project-card::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--card-color) 8%, transparent), transparent 60%);
+  background: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), color-mix(in srgb, var(--card-color) 12%, transparent), transparent 70%);
   border-radius: inherit;
   opacity: 0; transition: opacity var(--transition);
   pointer-events: none;
@@ -1760,6 +1760,103 @@ h1, h2, h3 {
 body.hide-cursor .cursor-dot,
 body.hide-cursor .cursor-ring {
   opacity: 0 !important;
+}
+
+/* ═══════════════ INTERACTIVE PORTFOLIO & 3D WEB STYLES ═══════════════ */
+#hero-3d-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Make sure hero content stacks above the 3D canvas */
+.hero-profile-wrap,
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Impact highlights inside project cards */
+.impact-text {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--accent-blue);
+  font-weight: 500;
+  border-left: 2px solid var(--accent);
+  padding-left: 8px;
+}
+[dir="rtl"] .impact-text {
+  border-left: none;
+  border-right: 2px solid var(--accent);
+  padding-left: 0;
+  padding-right: 8px;
+}
+
+/* Clipboard Copy Button Styling */
+.contact-info-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+.copy-email-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.copy-email-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+}
+.copy-email-btn:active {
+  transform: scale(0.92);
+}
+.copy-email-btn svg {
+  transition: transform var(--transition);
+}
+.copy-email-btn.copied svg {
+  transform: scale(1.1);
+  color: var(--accent);
+}
+.copy-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  font-weight: 500;
+}
+.copy-email-btn:hover .copy-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
 }
 
 /* Reduced Motion Override */
