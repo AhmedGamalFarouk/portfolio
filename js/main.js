@@ -161,6 +161,10 @@ const translations = {
 let currentLang = localStorage.getItem('portfolio-lang') || 'en';
 
 function setLang(lang) {
+  // Safeguard against invalid lang values from localStorage (e.g. from other projects on the same domain)
+  if (lang !== 'en' && lang !== 'ar') {
+    lang = 'en';
+  }
   currentLang = lang;
   localStorage.setItem('portfolio-lang', lang);
   const html = document.documentElement;
@@ -171,14 +175,16 @@ function setLang(lang) {
   document.body.style.fontFamily = lang === 'ar' ? "'Cairo', sans-serif" : "'Inter', sans-serif";
 
   // Update lang buttons
-  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-  document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+  const langEn = document.getElementById('lang-en');
+  const langAr = document.getElementById('lang-ar');
+  if (langEn) langEn.classList.toggle('active', lang === 'en');
+  if (langAr) langAr.classList.toggle('active', lang === 'ar');
 
-  // Apply translations
-  const t = translations[lang];
+  // Apply translations with a safe fallback to English translations
+  const t = translations[lang] || translations['en'];
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) {
+    if (t && t[key] !== undefined) {
       el.innerHTML = t[key];
     }
   });
